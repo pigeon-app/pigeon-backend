@@ -1,0 +1,4 @@
+packages: regex-hyper.cabal
+
+package *
+    ghc: -dynamic
