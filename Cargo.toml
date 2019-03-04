@@ -7,4 +7,12 @@ edition = "2018"
 [dependencies]
 actix-web = "0.7"
 diesel = "1.4"
+dotenv = "0.12"
 
+[lib]
+name = "pigeon_backend"
+path = "src/lib.rs"
+
+[[bin]]
+name = "pigeon-backend"
+path = "src/bin.rs"
