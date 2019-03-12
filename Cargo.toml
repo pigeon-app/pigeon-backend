@@ -7,9 +7,12 @@ edition = "2018"
 license = "MPL-2.0"
 
 [dependencies]
+actix = "0.7"
 actix-web = "0.7"
-diesel = "1.4"
+chrono = { version = "0.4", features = ["serde"] }
+diesel = { version = "1.4", features = ["postgres", "r2d2", "uuid", "chrono"] }
 dotenv = "0.12"
+serde = { version = "1.0", features = ["derive"] }
 
 [lib]
 name = "pigeon_backend"
