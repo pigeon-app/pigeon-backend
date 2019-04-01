@@ -3,7 +3,10 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 use actix::{Actor, SyncContext};
-use diesel::{pg::PgConnection, r2d2::{self, ConnectionManager, Pool}};
+use diesel::{
+    pg::PgConnection,
+    r2d2::{self, ConnectionManager, Pool},
+};
 use std::env;
 
 /// This is db executor actor. can be run in parallel

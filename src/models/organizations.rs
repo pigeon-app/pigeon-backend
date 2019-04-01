@@ -2,16 +2,19 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+use crate::schema::organizations;
 use chrono::NaiveDateTime;
-use crate::schema::users;
-use diesel::{Queryable, Insertable};
-use serde::{Serialize, Deserialize};
+use diesel::{Insertable, Queryable};
+use diesel_geography::types::GeogPoint;
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize, Queryable, Insertable)]
-#[table_name = "users"]
-pub struct User {
+#[table_name = "organizations"]
+pub struct Organizations {
     pub id: i64,
-    pub email: String,
-    pub password: String,
+    pub display_name: String,
+    pub is_recipient: bool,
+    pub is_ready: bool,
+    pub location: GeogPoint,
     pub created_at: NaiveDateTime,
 }

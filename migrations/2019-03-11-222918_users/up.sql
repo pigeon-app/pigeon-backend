@@ -2,7 +2,9 @@
 
 CREATE TABLE users (
     id BIGSERIAL PRIMARY KEY,
-    email VARCHAR(100) NOT NULL,
+    display_name VARCHAR(128),
+    username VARCHAR(128) NOT NULL,
+    email VARCHAR(128) NOT NULL,
     password VARCHAR(128) NOT NULL,
     created_at TIMESTAMP NOT NULL
 );

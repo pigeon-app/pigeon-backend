@@ -5,11 +5,16 @@
 use actix::{self, prelude::*};
 use actix_web::server;
 use dotenv::dotenv;
-use pigeon_backend::{backend_app, database::{connect, DbExecutor}};
+use env_logger;
+use pigeon_backend::{
+    backend_app,
+    database::{connect, DbExecutor},
+};
 
 fn main() {
     dotenv().ok();
     let sys = actix::System::new("pigeon-backend");
+    env_logger::init();
 
     let pool = connect();
     let address: Addr<DbExecutor> = SyncArbiter::start(4, move || DbExecutor(pool.clone()));

@@ -9,9 +9,9 @@ pub mod database;
 pub mod models;
 pub mod schema;
 
-use actix::prelude::*;
-use actix_web::{App, HttpRequest, Responder};
 use crate::database::DbExecutor;
+use actix::prelude::*;
+use actix_web::{middleware, App, HttpRequest, Responder};
 
 pub struct AppState {
     pub db: Addr<DbExecutor>,
@@ -24,6 +24,7 @@ fn greet(req: &HttpRequest<AppState>) -> impl Responder {
 
 pub fn backend_app(db: Addr<DbExecutor>) -> App<AppState> {
     App::with_state(AppState { db })
+        .middleware(middleware::Logger::default())
         .prefix("/mapi/v1")
         .resource("/", |r| r.f(greet))
         .resource("/{name}", |r| r.f(greet))
